@@ -3,7 +3,6 @@ Clean Swift - Proof of Concept - ToDo List
 Use Cases
 
 | Name | Create Task |
-| :---: | :---: |
 | Description | The user will add a new Task to the TODO List | 
 | Actors | User, System |
 | Preconditions | none | 
