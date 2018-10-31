@@ -1,6 +1,6 @@
-#Clean Swift - Proof of Concept - ToDo List
+# Clean Swift - Proof of Concept - ToDo List
 
-Use Cases
+## Use Cases
 
 | Use Case 1 | Create Task |
 | --- | --- | 
