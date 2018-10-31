@@ -13,6 +13,12 @@
 		196107402189E11D00FA6786 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 1961073F2189E11D00FA6786 /* Assets.xcassets */; };
 		196107432189E11D00FA6786 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 196107412189E11D00FA6786 /* LaunchScreen.storyboard */; };
 		1961074E2189E11E00FA6786 /* TODO_ListTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1961074D2189E11E00FA6786 /* TODO_ListTests.swift */; };
+		1961075C2189ED7E00FA6786 /* CreateTaskTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1961075B2189ED7E00FA6786 /* CreateTaskTableViewController.swift */; };
+		1961075E2189F12F00FA6786 /* CreateTaskModels.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1961075D2189F12F00FA6786 /* CreateTaskModels.swift */; };
+		196107602189F3FA00FA6786 /* CreateTaskInteractor.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1961075F2189F3FA00FA6786 /* CreateTaskInteractor.swift */; };
+		196107632189F4E200FA6786 /* CreateTaskWorker.swift in Sources */ = {isa = PBXBuildFile; fileRef = 196107622189F4E200FA6786 /* CreateTaskWorker.swift */; };
+		196107652189F5D100FA6786 /* CreateTaskPresenter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 196107642189F5D100FA6786 /* CreateTaskPresenter.swift */; };
+		196107672189F73200FA6786 /* CreateTaskConfigurator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 196107662189F73200FA6786 /* CreateTaskConfigurator.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -36,6 +42,12 @@
 		196107492189E11E00FA6786 /* TODO-ListTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = "TODO-ListTests.xctest"; sourceTree = BUILT_PRODUCTS_DIR; };
 		1961074D2189E11E00FA6786 /* TODO_ListTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TODO_ListTests.swift; sourceTree = "<group>"; };
 		1961074F2189E11E00FA6786 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		1961075B2189ED7E00FA6786 /* CreateTaskTableViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CreateTaskTableViewController.swift; sourceTree = "<group>"; };
+		1961075D2189F12F00FA6786 /* CreateTaskModels.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CreateTaskModels.swift; sourceTree = "<group>"; };
+		1961075F2189F3FA00FA6786 /* CreateTaskInteractor.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CreateTaskInteractor.swift; sourceTree = "<group>"; };
+		196107622189F4E200FA6786 /* CreateTaskWorker.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CreateTaskWorker.swift; sourceTree = "<group>"; };
+		196107642189F5D100FA6786 /* CreateTaskPresenter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CreateTaskPresenter.swift; sourceTree = "<group>"; };
+		196107662189F73200FA6786 /* CreateTaskConfigurator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CreateTaskConfigurator.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -77,6 +89,7 @@
 		196107372189E11C00FA6786 /* TODO-List */ = {
 			isa = PBXGroup;
 			children = (
+				196107582189E99E00FA6786 /* Scenes */,
 				196107382189E11C00FA6786 /* AppDelegate.swift */,
 				1961073A2189E11C00FA6786 /* ViewController.swift */,
 				1961073C2189E11C00FA6786 /* Main.storyboard */,
@@ -94,6 +107,35 @@
 				1961074F2189E11E00FA6786 /* Info.plist */,
 			);
 			path = "TODO-ListTests";
+			sourceTree = "<group>";
+		};
+		196107582189E99E00FA6786 /* Scenes */ = {
+			isa = PBXGroup;
+			children = (
+				1961075A2189EA3300FA6786 /* ShowTasks */,
+				196107592189E9A800FA6786 /* CreateTask */,
+			);
+			path = Scenes;
+			sourceTree = "<group>";
+		};
+		196107592189E9A800FA6786 /* CreateTask */ = {
+			isa = PBXGroup;
+			children = (
+				1961075B2189ED7E00FA6786 /* CreateTaskTableViewController.swift */,
+				1961075D2189F12F00FA6786 /* CreateTaskModels.swift */,
+				1961075F2189F3FA00FA6786 /* CreateTaskInteractor.swift */,
+				196107622189F4E200FA6786 /* CreateTaskWorker.swift */,
+				196107642189F5D100FA6786 /* CreateTaskPresenter.swift */,
+				196107662189F73200FA6786 /* CreateTaskConfigurator.swift */,
+			);
+			path = CreateTask;
+			sourceTree = "<group>";
+		};
+		1961075A2189EA3300FA6786 /* ShowTasks */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = ShowTasks;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -197,7 +239,13 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				196107632189F4E200FA6786 /* CreateTaskWorker.swift in Sources */,
+				196107672189F73200FA6786 /* CreateTaskConfigurator.swift in Sources */,
 				1961073B2189E11C00FA6786 /* ViewController.swift in Sources */,
+				1961075C2189ED7E00FA6786 /* CreateTaskTableViewController.swift in Sources */,
+				1961075E2189F12F00FA6786 /* CreateTaskModels.swift in Sources */,
+				196107652189F5D100FA6786 /* CreateTaskPresenter.swift in Sources */,
+				196107602189F3FA00FA6786 /* CreateTaskInteractor.swift in Sources */,
 				196107392189E11C00FA6786 /* AppDelegate.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
