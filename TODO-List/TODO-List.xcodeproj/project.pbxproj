@@ -8,7 +8,6 @@
 
 /* Begin PBXBuildFile section */
 		196107392189E11C00FA6786 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 196107382189E11C00FA6786 /* AppDelegate.swift */; };
-		1961073B2189E11C00FA6786 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1961073A2189E11C00FA6786 /* ViewController.swift */; };
 		1961073E2189E11C00FA6786 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 1961073C2189E11C00FA6786 /* Main.storyboard */; };
 		196107402189E11D00FA6786 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 1961073F2189E11D00FA6786 /* Assets.xcassets */; };
 		196107432189E11D00FA6786 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 196107412189E11D00FA6786 /* LaunchScreen.storyboard */; };
@@ -19,6 +18,7 @@
 		196107632189F4E200FA6786 /* CreateTaskWorker.swift in Sources */ = {isa = PBXBuildFile; fileRef = 196107622189F4E200FA6786 /* CreateTaskWorker.swift */; };
 		196107652189F5D100FA6786 /* CreateTaskPresenter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 196107642189F5D100FA6786 /* CreateTaskPresenter.swift */; };
 		196107672189F73200FA6786 /* CreateTaskConfigurator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 196107662189F73200FA6786 /* CreateTaskConfigurator.swift */; };
+		19BCCD33218B5E1900134173 /* CreateTaskTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 19BCCD32218B5E1900134173 /* CreateTaskTableViewCell.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -34,7 +34,6 @@
 /* Begin PBXFileReference section */
 		196107352189E11C00FA6786 /* TODO-List.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "TODO-List.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		196107382189E11C00FA6786 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
-		1961073A2189E11C00FA6786 /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
 		1961073D2189E11C00FA6786 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
 		1961073F2189E11D00FA6786 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		196107422189E11D00FA6786 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
@@ -48,6 +47,7 @@
 		196107622189F4E200FA6786 /* CreateTaskWorker.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CreateTaskWorker.swift; sourceTree = "<group>"; };
 		196107642189F5D100FA6786 /* CreateTaskPresenter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CreateTaskPresenter.swift; sourceTree = "<group>"; };
 		196107662189F73200FA6786 /* CreateTaskConfigurator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CreateTaskConfigurator.swift; sourceTree = "<group>"; };
+		19BCCD32218B5E1900134173 /* CreateTaskTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CreateTaskTableViewCell.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -91,7 +91,6 @@
 			children = (
 				196107582189E99E00FA6786 /* Scenes */,
 				196107382189E11C00FA6786 /* AppDelegate.swift */,
-				1961073A2189E11C00FA6786 /* ViewController.swift */,
 				1961073C2189E11C00FA6786 /* Main.storyboard */,
 				1961073F2189E11D00FA6786 /* Assets.xcassets */,
 				196107412189E11D00FA6786 /* LaunchScreen.storyboard */,
@@ -127,6 +126,7 @@
 				196107622189F4E200FA6786 /* CreateTaskWorker.swift */,
 				196107642189F5D100FA6786 /* CreateTaskPresenter.swift */,
 				196107662189F73200FA6786 /* CreateTaskConfigurator.swift */,
+				19BCCD32218B5E1900134173 /* CreateTaskTableViewCell.swift */,
 			);
 			path = CreateTask;
 			sourceTree = "<group>";
@@ -241,9 +241,9 @@
 			files = (
 				196107632189F4E200FA6786 /* CreateTaskWorker.swift in Sources */,
 				196107672189F73200FA6786 /* CreateTaskConfigurator.swift in Sources */,
-				1961073B2189E11C00FA6786 /* ViewController.swift in Sources */,
 				1961075C2189ED7E00FA6786 /* CreateTaskTableViewController.swift in Sources */,
 				1961075E2189F12F00FA6786 /* CreateTaskModels.swift in Sources */,
+				19BCCD33218B5E1900134173 /* CreateTaskTableViewCell.swift in Sources */,
 				196107652189F5D100FA6786 /* CreateTaskPresenter.swift in Sources */,
 				196107602189F3FA00FA6786 /* CreateTaskInteractor.swift in Sources */,
 				196107392189E11C00FA6786 /* AppDelegate.swift in Sources */,

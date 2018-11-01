@@ -10,16 +10,12 @@ import UIKit
 
 // MARK: Connect View, Interactor, and Presenter
 
-extension CreateTaskTableViewController: CreateTaskPresenterOutput
+extension CreateTaskViewController: CreateTaskPresenterOutput
 {
-    func displaySomething(viewModel: CreateTaskViewModel) {
-    }
 }
 
-extension CreateTaskInteractor: CreateTaskTableViewControllerOutput
+extension CreateTaskInteractor: CreateTaskViewControllerOutput
 {
-    func sendText(request: CreateTaskRequest) {
-    }
 }
 
 extension CreateTaskPresenter: CreateTaskInteractorOutput
@@ -30,21 +26,11 @@ class CreateTaskConfigurator
 {
     // MARK: Object lifecycle
     
-    class var sharedInstance: CreateTaskConfigurator
-    {
-        struct Static {
-            static var instance: CreateTaskConfigurator?
-            static var token = {0}()
-        }
-        
-        _ = Static.token
-        
-        return Static.instance!
-    }
+    static let singleton = CreateTaskConfigurator()
     
     // MARK: Configuration
     
-    func configure(viewController: CreateTaskTableViewController)
+    func configure(viewController: CreateTaskViewController)
     {
         let presenter = CreateTaskPresenter()
         presenter.output = viewController

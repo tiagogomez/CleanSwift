@@ -13,9 +13,9 @@ struct CreateTaskRequest {
 }
 
 struct CreateTaskResponse {
-//    let task: String
+    let tasksList: [String]
 }
 
 struct CreateTaskViewModel {
-//    let task: String
+    let tasksList: [String]
 }

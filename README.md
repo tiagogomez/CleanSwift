@@ -16,8 +16,8 @@
 | --- | --- | 
 | Description | The system will display all the tasks | 
 | Actors | System |
-| Preconditions | There is at least one task | 
-| Basic Flow | The system always will display all the Tasks |
-| Alternate Flows | none | 
+| Preconditions | none | 
+| Basic Flow | The system will always display all the Tasks |
+| Alternate Flows | If there is no task, the system will display a message suggesting to create a new Task | 
 | Exception Flows | none |
 | Post Conditions | none |

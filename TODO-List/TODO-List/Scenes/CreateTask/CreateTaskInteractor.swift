@@ -19,18 +19,19 @@ protocol CreateTaskInteractorOutput {
 class CreateTaskInteractor: CreateTaskInteractorInput {
     
     var output: CreateTaskInteractorOutput!
-    var worker: CreateTaskWorker!
+    var worker: PListWorker!
     
     // MARK: Business logic
     func storeTask(request: CreateTaskRequest) {
         // NOTE: Create some Worker to do the work
         
-        worker = CreateTaskWorker()
-        worker.doSomeWork()
+        worker = PListWorker()
+        worker.createPList()
+        let tasksList: [String] = worker.getPList()!
         
         // NOTE: Pass the result to the Presenter
         
-        let response = CreateTaskResponse()
+        let response = CreateTaskResponse(tasksList: tasksList)
         output.presentTaskList(response: response)
     }
     
