@@ -1,5 +1,5 @@
 //
-//  CreateTaskWorker.swift
+//  ShowTasksWorker.swift
 //  TODO-List
 //
 //  Created by Santiago Gomez Giraldo on 10/31/18.
@@ -15,10 +15,14 @@ class PListWorker {
         return documentDirectoryURL.appendingPathComponent("TaskList.plist")
     }
 
-    func createPList() -> Bool {
+    func createPListIfNotExist(with data: [String]?) -> Bool {
         do {
-            let toDoList = ["Hacer algo", "Hacer otra cosa", "Holi"]
-            try savePropertyList(toDoList)
+            let fileManager = FileManager.default
+            if (!fileManager.fileExists(atPath: plistURL.absoluteString)){
+                let toDoList = data ?? ["You don´t have any task yet, Add a new task"]
+                try savePropertyList(toDoList)
+                return true
+            }
             return true
         } catch {
             print(error)
@@ -33,6 +37,16 @@ class PListWorker {
         } catch {
             print(error)
             return nil
+        }
+    }
+    
+    func setDataToPList(task: String){
+        do {
+            var tasksList: [String] = try loadPropertyList()
+            tasksList.append(task)
+            try savePropertyList(tasksList)
+        } catch {
+            print(error)
         }
     }
         

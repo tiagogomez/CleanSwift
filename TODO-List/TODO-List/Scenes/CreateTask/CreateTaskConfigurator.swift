@@ -10,20 +10,16 @@ import UIKit
 
 // MARK: Connect View, Interactor, and Presenter
 
-extension CreateTaskViewController: CreateTaskPresenterOutput
-{
+extension CreateTaskViewController: CreateTaskPresenterOutput {
 }
 
-extension CreateTaskInteractor: CreateTaskViewControllerOutput
-{
+extension CreateTaskInteractor: CreateTaskViewControllerOutput {
 }
 
-extension CreateTaskPresenter: CreateTaskInteractorOutput
-{
+extension CreateTaskPresenter: CreateTaskInteractorOutput {
 }
 
-class CreateTaskConfigurator
-{
+class CreateTaskConfigurator {
     // MARK: Object lifecycle
     
     static let singleton = CreateTaskConfigurator()

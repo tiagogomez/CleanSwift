@@ -26,12 +26,12 @@ class CreateTaskInteractor: CreateTaskInteractorInput {
         // NOTE: Create some Worker to do the work
         
         worker = PListWorker()
-        worker.createPList()
-        let tasksList: [String] = worker.getPList()!
+        worker.createPListIfNotExist(with: nil)
+        worker.setDataToPList(task: request.task)
         
         // NOTE: Pass the result to the Presenter
         
-        let response = CreateTaskResponse(tasksList: tasksList)
+        let response = CreateTaskResponse()
         output.presentTaskList(response: response)
     }
     

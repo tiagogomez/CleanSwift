@@ -8,10 +8,10 @@
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <scenes>
-        <!--Create Task View Controller-->
+        <!--Show Tasks View Controller-->
         <scene sceneID="b53-Ca-8fp">
             <objects>
-                <tableViewController id="Wze-2z-zHn" customClass="CreateTaskViewController" customModule="TODO_List" customModuleProvider="target" sceneMemberID="viewController">
+                <tableViewController id="Wze-2z-zHn" customClass="ShowTasksViewController" customModule="TODO_List" customModuleProvider="target" sceneMemberID="viewController">
                     <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" id="BAK-eC-wIS">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>

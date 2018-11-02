@@ -16,7 +16,7 @@ protocol CreateTaskViewControllerOutput {
     func storeTask(request: CreateTaskRequest)
 }
 
-class CreateTaskViewController: UITableViewController, CreateTaskViewControllerInput {
+class CreateTaskViewController: UIViewController, CreateTaskViewControllerInput {
         
     var output: CreateTaskViewControllerOutput!
     var tasksList: [String] = []
@@ -33,33 +33,16 @@ class CreateTaskViewController: UITableViewController, CreateTaskViewControllerI
         super.viewDidLoad()
         setTask()
     }
-
-    override func numberOfSections(in tableView: UITableView) -> Int {
-        return 1
-    }
-
-    override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return tasksList.count
-    }
-    
-    override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        let cell = tableView.dequeueReusableCell(withIdentifier: "taskCell", for: indexPath)
-        cell.textLabel?.text = tasksList[indexPath.row]
-        return cell
-    }
     
     // MARK: Event handling
     func setTask() {
-        let request = CreateTaskRequest()
+        let request = CreateTaskRequest(task: "Nueva Tarea")
         output.storeTask(request: request)
     }
     
     // MARK: Display logic
     func displayTaskList(viewModel: CreateTaskViewModel) {
         // NOTE: Display the result from the Presenter
-        tasksList = viewModel.tasksList
-        tableView.reloadData()
-        print("list", tasksList)
     }
 }
 

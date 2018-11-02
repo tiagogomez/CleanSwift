@@ -24,13 +24,8 @@ class CreateTaskPresenter: CreateTaskPresenterInput {
     func presentTaskList(response: CreateTaskResponse) {
         
         // NOTE: Format the response from the Interactor and pass the result back to the View Controller
-        
-        let tasksList = transformDataToViewModel(data: response)
-        let viewModel = CreateTaskViewModel(tasksList: tasksList)
+        let viewModel = CreateTaskViewModel()
         output.displayTaskList(viewModel: viewModel)
     }
     
-    func transformDataToViewModel(data: CreateTaskResponse) -> [String] {
-        return data.tasksList as [String]
-    }
 }

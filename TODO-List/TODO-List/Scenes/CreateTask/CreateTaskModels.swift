@@ -9,13 +9,11 @@
 import UIKit
 
 struct CreateTaskRequest {
-//    let task: String
+    let task: String
 }
 
 struct CreateTaskResponse {
-    let tasksList: [String]
 }
 
 struct CreateTaskViewModel {
-    let tasksList: [String]
 }

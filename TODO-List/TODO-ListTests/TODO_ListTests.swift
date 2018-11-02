@@ -12,11 +12,11 @@ import XCTest
 class TODO_ListTests: XCTestCase {
     
     var mockTasksList: [String]?
-    var mockResponse: CreateTaskResponse?
+    var mockResponse: ShowTasksResponse?
     
     override func setUp() {
         mockTasksList = ["First Task", "Second Task"]
-        mockResponse = CreateTaskResponse(tasksList: mockTasksList!)
+        mockResponse = ShowTasksResponse(tasksList: mockTasksList!)
     }
     
     override func tearDown() {
@@ -24,20 +24,28 @@ class TODO_ListTests: XCTestCase {
     
     func testPListCreated() {
         let worker = PListWorker()
-        let listCreated = worker.createPList()
+        let listCreated = worker.createPListIfNotExist(with: mockTasksList)
         XCTAssertTrue(listCreated, "The list does not exist")
     }
     
     // Refactor
     func testGetPListData() {
         let worker = PListWorker()
+        worker.createPListIfNotExist(with: mockTasksList)
         let tasksList: [String] = worker.getPList()!
-        XCTAssertEqual(tasksList[2], "Holi", "")
+        XCTAssertEqual(tasksList[0], "First Task", "")
+    }
+    
+    func testUpdatePListData() {
+        let worker = PListWorker()
+        worker.setDataToPList(task: "NewTask")
+        let tasksList: [String] = worker.getPList()!
+        XCTAssertEqual(tasksList.last, "NewTask")
     }
     
     func testTransformData() {
-        let presenter = CreateTaskPresenter()
+        let presenter = ShowTasksPresenter()
         let tasksList = presenter.transformDataToViewModel(data: mockResponse!)
-        XCTAssertEqual(tasksList, mockTasksList, "Both lists shoul be the same")
+        XCTAssertEqual(tasksList, mockTasksList, "Both lists should be the same")
     }
 }
