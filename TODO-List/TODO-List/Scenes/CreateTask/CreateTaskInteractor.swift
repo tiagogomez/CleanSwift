@@ -26,7 +26,7 @@ class CreateTaskInteractor: CreateTaskInteractorInput {
         // NOTE: Create some Worker to do the work
         
         worker = PListWorker()
-        worker.createPListIfNotExist(with: nil)
+        worker.checkOrCreatePList(with: nil)
         worker.setDataToPList(task: request.task)
         
         // NOTE: Pass the result to the Presenter

@@ -15,10 +15,10 @@ class PListWorker {
         return documentDirectoryURL.appendingPathComponent("TaskList.plist")
     }
 
-    func createPListIfNotExist(with data: [String]?) -> Bool {
+    func checkOrCreatePList(with data: [String]?) -> Bool {
         do {
             let fileManager = FileManager.default
-            if (!fileManager.fileExists(atPath: plistURL.absoluteString)){
+            if (!fileManager.fileExists(atPath: plistURL.path)){
                 let toDoList = data ?? ["You don´t have any task yet, Add a new task"]
                 try savePropertyList(toDoList)
                 return true
@@ -45,6 +45,7 @@ class PListWorker {
             var tasksList: [String] = try loadPropertyList()
             tasksList.append(task)
             try savePropertyList(tasksList)
+            print("list", tasksList)
         } catch {
             print(error)
         }

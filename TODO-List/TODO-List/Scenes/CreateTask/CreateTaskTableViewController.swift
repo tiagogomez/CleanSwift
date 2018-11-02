@@ -17,26 +17,34 @@ protocol CreateTaskViewControllerOutput {
 }
 
 class CreateTaskViewController: UIViewController, CreateTaskViewControllerInput {
-        
-    var output: CreateTaskViewControllerOutput!
-    var tasksList: [String] = []
     
+    @IBOutlet var popUp: UIView!
+    @IBOutlet weak var saveTask: UIButton!
+    @IBOutlet weak var taskField: UITextField!
+    
+    var output: CreateTaskViewControllerOutput!
+    
+    @IBAction func buttonPressed(_ sender: Any) {
+        if taskField.text != nil {
+            setTask(text: taskField.text!)
+        }
+    }
     
     // MARK: Object lifecycle
     override func awakeFromNib() {
         super.awakeFromNib()
-        CreateTaskConfigurator.singleton.configure(viewController: self)
+    CreateTaskConfigurator.singleton.configure(viewController: self)
     }
     
     // MARK: View lifecycle
     override func viewDidLoad() {
         super.viewDidLoad()
-        setTask()
+        popUp.layer.cornerRadius = 20
     }
     
     // MARK: Event handling
-    func setTask() {
-        let request = CreateTaskRequest(task: "Nueva Tarea")
+    func setTask(text: String) {
+        let request = CreateTaskRequest(task: text)
         output.storeTask(request: request)
     }
     

@@ -16,10 +16,17 @@ protocol ShowTasksViewControllerOutput {
     func requestTask(request: ShowTasksRequest)
 }
 
-class ShowTasksViewController: UITableViewController, ShowTasksViewControllerInput {
+class ShowTasksViewController: UIViewController, UITableViewDataSource, UITableViewDelegate, ShowTasksViewControllerInput {
+    
+    @IBOutlet weak var tableView: UITableView!
+    
     
     var output: ShowTasksViewControllerOutput!
     var tasksList: [String] = []
+    @IBAction func presentCreateTaskVC(_ sender: Any) {
+//        let createTaskViewController = CreateTaskViewController()
+//        self.navigationController?.pushViewController(createTaskViewController, animated: true)
+    }
     
     override func awakeFromNib() {
         super.awakeFromNib()
@@ -28,18 +35,20 @@ class ShowTasksViewController: UITableViewController, ShowTasksViewControllerInp
 
     override func viewDidLoad() {
         super.viewDidLoad()
+        tableView.delegate = self
+        tableView.dataSource = self
         showTasks()
     }
 
-    override func numberOfSections(in tableView: UITableView) -> Int {
+    func numberOfSections(in tableView: UITableView) -> Int {
         return 1
     }
 
-    override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+    func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         return tasksList.count
     }
     
-    override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
+    func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: "taskCell", for: indexPath)
         cell.textLabel?.text = tasksList[indexPath.row]
         return cell
@@ -54,6 +63,5 @@ class ShowTasksViewController: UITableViewController, ShowTasksViewControllerInp
         tasksList = viewModel.tasksList
         tableView.reloadData()
         print("list", tasksList)
-        
     }
 }

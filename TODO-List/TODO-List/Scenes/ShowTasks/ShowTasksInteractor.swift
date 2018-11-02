@@ -23,7 +23,7 @@ class ShowTasksInteractor: ShowTasksInteractorInput {
     
     func requestTask(request: ShowTasksRequest) {
         worker = PListWorker()
-        let listExist = worker.createPListIfNotExist(with: nil)
+        let listExist = worker.checkOrCreatePList(with: nil)
         if listExist {
             let tasksList: [String] = worker.getPList()!
             let response = ShowTasksResponse(tasksList: tasksList)
