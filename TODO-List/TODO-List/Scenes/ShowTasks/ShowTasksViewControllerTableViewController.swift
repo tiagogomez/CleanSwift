@@ -19,9 +19,6 @@ protocol ShowTasksViewControllerOutput {
 class ShowTasksViewController: UIViewController, UITableViewDataSource, UITableViewDelegate, ShowTasksViewControllerInput {
     
     @IBOutlet weak var tableView: UITableView!
-    
-    var messageSubView: UIView = UIView()
-    var messageLabel: UILabel = UILabel()
 
     var output: ShowTasksViewControllerOutput!
     var router: ShowTasksRouter!
@@ -39,8 +36,7 @@ class ShowTasksViewController: UIViewController, UITableViewDataSource, UITableV
 
     override func viewDidLoad() {
         super.viewDidLoad()
-        tableView.delegate = self
-        tableView.dataSource = self
+        setupTableView()
         showTasks()
     }
 
@@ -53,9 +49,17 @@ class ShowTasksViewController: UIViewController, UITableViewDataSource, UITableV
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        let cell = tableView.dequeueReusableCell(withIdentifier: "taskCell", for: indexPath)
-        cell.textLabel?.text = tasksList[indexPath.row]
+        let cell = tableView.dequeueReusableCell(withIdentifier: "TaskViewCell", for: indexPath) as! TaskViewCell
+        cell.taskText.text = tasksList[indexPath.row]
         return cell
+    }
+    
+    func setupTableView () {
+        tableView.delegate = self
+        tableView.dataSource = self
+        tableView.register(UINib(nibName: "TaskViewCell", bundle: nil), forCellReuseIdentifier: "TaskViewCell")
+        tableView.allowsMultipleSelection = true
+        tableView.allowsMultipleSelectionDuringEditing = true
     }
     
     func showTasks() {
@@ -71,6 +75,9 @@ class ShowTasksViewController: UIViewController, UITableViewDataSource, UITableV
             showSuggestion()
         }
     }
+    
+    private var messageSubView: UIView = UIView()
+    private var messageLabel: UILabel = UILabel()
     
     private func showSuggestion() {
         messageSubView.layer.cornerRadius = 20
