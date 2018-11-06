@@ -19,10 +19,12 @@ protocol ShowTasksViewControllerOutput {
 class ShowTasksViewController: UIViewController, UITableViewDataSource, UITableViewDelegate, ShowTasksViewControllerInput {
     
     @IBOutlet weak var tableView: UITableView!
-    
-    
+    var messageSubView: UIView = UIView()
+    var messageLabel: UILabel = UILabel()
+
     var output: ShowTasksViewControllerOutput!
     var tasksList: [String] = []
+    
     @IBAction func presentCreateTaskVC(_ sender: Any) {
 //        let createTaskViewController = CreateTaskViewController()
 //        self.navigationController?.pushViewController(createTaskViewController, animated: true)
@@ -63,5 +65,26 @@ class ShowTasksViewController: UIViewController, UITableViewDataSource, UITableV
         tasksList = viewModel.tasksList
         tableView.reloadData()
         print("list", tasksList)
+        if tasksList.isEmpty {
+            showSuggestion()
+        }
+    }
+    
+    private func showSuggestion() {
+        messageSubView.layer.cornerRadius = 20
+        messageSubView.backgroundColor = UIColor .gray
+        messageLabel.text = "You don´t have any task yet, Add a new task"
+        messageSubView.addSubview(messageLabel)
+        self.view.addSubview(messageSubView)
+        messageSubView.translatesAutoresizingMaskIntoConstraints = false
+        messageSubView.centerYAnchor.constraint(equalTo: self.view.centerYAnchor, constant: 0).isActive = true
+        messageSubView.centerXAnchor.constraint(equalTo: self.view.centerXAnchor, constant: 0).isActive = true
+        messageSubView.widthAnchor.constraint(equalToConstant: 350).isActive = true
+        messageSubView.heightAnchor.constraint(equalToConstant: 100).isActive = true
+        messageLabel.translatesAutoresizingMaskIntoConstraints = false
+        messageLabel.sizeToFit()
+        messageLabel.textAlignment = .center
+        messageLabel.centerYAnchor.constraint(equalTo: messageSubView.centerYAnchor, constant: 0).isActive = true
+        messageLabel.centerXAnchor.constraint(equalTo: messageSubView.centerXAnchor, constant: 0).isActive = true
     }
 }

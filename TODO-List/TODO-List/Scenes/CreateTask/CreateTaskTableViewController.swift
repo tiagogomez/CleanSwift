@@ -25,7 +25,7 @@ class CreateTaskViewController: UIViewController, CreateTaskViewControllerInput 
     var output: CreateTaskViewControllerOutput!
     
     @IBAction func buttonPressed(_ sender: Any) {
-        if taskField.text != nil {
+        if taskField.text != "" {
             setTask(text: taskField.text!)
         }
     }
@@ -33,7 +33,7 @@ class CreateTaskViewController: UIViewController, CreateTaskViewControllerInput 
     // MARK: Object lifecycle
     override func awakeFromNib() {
         super.awakeFromNib()
-    CreateTaskConfigurator.singleton.configure(viewController: self)
+        CreateTaskConfigurator.singleton.configure(viewController: self)
     }
     
     // MARK: View lifecycle

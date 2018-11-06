@@ -19,7 +19,7 @@ class PListWorker {
         do {
             let fileManager = FileManager.default
             if (!fileManager.fileExists(atPath: plistURL.path)){
-                let toDoList = data ?? ["You don´t have any task yet, Add a new task"]
+                let toDoList = data ?? []
                 try savePropertyList(toDoList)
                 return true
             }
