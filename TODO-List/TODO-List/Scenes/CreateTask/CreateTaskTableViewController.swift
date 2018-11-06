@@ -19,14 +19,15 @@ protocol CreateTaskViewControllerOutput {
 class CreateTaskViewController: UIViewController, CreateTaskViewControllerInput {
     
     @IBOutlet var popUp: UIView!
-    @IBOutlet weak var saveTask: UIButton!
     @IBOutlet weak var taskField: UITextField!
     
     var output: CreateTaskViewControllerOutput!
+    var router: CreateTaskRouter!
     
     @IBAction func buttonPressed(_ sender: Any) {
         if taskField.text != "" {
             setTask(text: taskField.text!)
+            router.navigateToShowTasks()
         }
     }
     

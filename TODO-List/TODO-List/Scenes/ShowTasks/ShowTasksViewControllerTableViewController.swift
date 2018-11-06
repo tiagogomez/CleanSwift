@@ -19,15 +19,17 @@ protocol ShowTasksViewControllerOutput {
 class ShowTasksViewController: UIViewController, UITableViewDataSource, UITableViewDelegate, ShowTasksViewControllerInput {
     
     @IBOutlet weak var tableView: UITableView!
+    
     var messageSubView: UIView = UIView()
     var messageLabel: UILabel = UILabel()
 
     var output: ShowTasksViewControllerOutput!
+    var router: ShowTasksRouter!
+    
     var tasksList: [String] = []
     
-    @IBAction func presentCreateTaskVC(_ sender: Any) {
-//        let createTaskViewController = CreateTaskViewController()
-//        self.navigationController?.pushViewController(createTaskViewController, animated: true)
+    @IBAction func addTaskButtonPressed(_ sender: Any) {
+        router.navigateToCreateTask()
     }
     
     override func awakeFromNib() {

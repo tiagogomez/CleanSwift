@@ -26,8 +26,10 @@ class CreateTaskConfigurator {
     
     // MARK: Configuration
     
-    func configure(viewController: CreateTaskViewController)
-    {
+    func configure(viewController: CreateTaskViewController) {
+        let router = CreateTaskRouter()
+        router.viewController = viewController
+        
         let presenter = CreateTaskPresenter()
         presenter.output = viewController
         
@@ -35,5 +37,6 @@ class CreateTaskConfigurator {
         interactor.output = presenter
         
         viewController.output = interactor
+        viewController.router = router
     }
 }

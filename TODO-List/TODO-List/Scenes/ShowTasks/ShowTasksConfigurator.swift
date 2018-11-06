@@ -27,6 +27,9 @@ class ShowTasksConfigurator {
     // MARK: Configuration
     
     func configure(viewController: ShowTasksViewController) {
+        let router = ShowTasksRouter()
+        router.viewController = viewController
+        
         let presenter = ShowTasksPresenter()
         presenter.output = viewController
         
@@ -34,5 +37,6 @@ class ShowTasksConfigurator {
         interactor.output = presenter
         
         viewController.output = interactor
+        viewController.router = router
     }
 }

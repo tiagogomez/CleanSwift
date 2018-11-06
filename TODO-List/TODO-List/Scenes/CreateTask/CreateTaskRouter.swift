@@ -1,0 +1,24 @@
+//
+//  CreateTaskRouter.swift
+//  TODO-List
+//
+//  Created by Santiago Gomez Giraldo on 11/6/18.
+//  Copyright © 2018 Santiago Gomez Giraldo. All rights reserved.
+//
+
+import UIKit
+
+protocol CreateTaskRouterInput {
+    func navigateToShowTasks()
+}
+
+class CreateTaskRouter: CreateTaskRouterInput {
+    
+    weak var viewController: CreateTaskViewController!
+    
+    func navigateToShowTasks() {
+        let storyboard = UIStoryboard(name: "Main", bundle: nil)
+        let controller = storyboard.instantiateViewController(withIdentifier: "ShowTasksViewController")
+        viewController.present(controller, animated: true, completion: nil)
+    }
+}
