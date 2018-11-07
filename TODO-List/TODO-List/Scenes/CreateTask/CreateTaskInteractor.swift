@@ -25,7 +25,7 @@ class CreateTaskInteractor: CreateTaskInteractorInput {
     func storeTask(request: CreateTaskRequest) {
         // NOTE: Create some Worker to do the work
         
-        worker = PListWorker()
+        worker = PListWorker(name: "TaskList")
         worker.checkOrCreatePList(with: nil)
         worker.setDataToPList(task: request.task)
         

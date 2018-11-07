@@ -1,5 +1,5 @@
 //
-//  ShowTasksViewControllerTableViewController.swift
+//  ShowTasksViewController.swift
 //  TODO-List
 //
 //  Created by Santiago Gomez Giraldo on 11/2/18.
@@ -16,17 +16,33 @@ protocol ShowTasksViewControllerOutput {
     func requestTask(request: ShowTasksRequest)
 }
 
-class ShowTasksViewController: UIViewController, UITableViewDataSource, UITableViewDelegate, ShowTasksViewControllerInput {
+protocol MarkTaskAsDoneViewControllerOutput {
+    func removeTasks(request: MarkTaskAsDoneRequest)
+}
+
+class ShowTasksViewController: UIViewController, UITableViewDataSource, UITableViewDelegate {
     
     @IBOutlet weak var tableView: UITableView!
 
     var output: ShowTasksViewControllerOutput!
+    var markTaskAsDoneOutput: MarkTaskAsDoneViewControllerOutput!
     var router: ShowTasksRouter!
     
     var tasksList: [String] = []
     
     @IBAction func addTaskButtonPressed(_ sender: Any) {
         router.navigateToCreateTask()
+    }
+    
+    @IBAction func markAsDoneButtonPressed(_ sender: Any) {
+        if let indexForSelectedTasks = tableView.indexPathsForSelectedRows {
+            var selectedTasks: [String] = []
+            for index in indexForSelectedTasks {
+                selectedTasks.append(tasksList[index.row])
+            }
+            let request = MarkTaskAsDoneRequest(doneTasks: selectedTasks)
+            markTaskAsDoneOutput.removeTasks(request: request)
+        }
     }
     
     override func awakeFromNib() {
@@ -67,15 +83,6 @@ class ShowTasksViewController: UIViewController, UITableViewDataSource, UITableV
         output.requestTask(request: request)
     }
     
-    func displayTaskList(viewModel: ShowTasksViewModel) {
-        tasksList = viewModel.tasksList
-        tableView.reloadData()
-        print("list", tasksList)
-        if tasksList.isEmpty {
-            showSuggestion()
-        }
-    }
-    
     private var messageSubView: UIView = UIView()
     private var messageLabel: UILabel = UILabel()
     
@@ -95,5 +102,17 @@ class ShowTasksViewController: UIViewController, UITableViewDataSource, UITableV
         messageLabel.textAlignment = .center
         messageLabel.centerYAnchor.constraint(equalTo: messageSubView.centerYAnchor, constant: 0).isActive = true
         messageLabel.centerXAnchor.constraint(equalTo: messageSubView.centerXAnchor, constant: 0).isActive = true
+    }
+}
+
+extension ShowTasksViewController : ShowTasksViewControllerInput {
+    
+    func displayTaskList(viewModel: ShowTasksViewModel) {
+        tasksList = viewModel.tasksList
+        tableView.reloadData()
+        print("list", tasksList)
+        if tasksList.isEmpty {
+            showSuggestion()
+        }
     }
 }

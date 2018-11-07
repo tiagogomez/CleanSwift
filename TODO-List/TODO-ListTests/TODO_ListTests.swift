@@ -15,29 +15,31 @@ class TODO_ListTests: XCTestCase {
     var mockResponse: ShowTasksResponse?
     
     override func setUp() {
-        mockTasksList = ["First Task", "Second Task"]
+        mockTasksList = ["First Task", "Second Task", "Third Task"]
         mockResponse = ShowTasksResponse(tasksList: mockTasksList!)
     }
     
     override func tearDown() {
+        mockTasksList = nil
+        mockResponse = nil
     }
     
     func testPListCreated() {
-        let worker = PListWorker()
-        let listCreated = worker.createPListIfNotExist(with: mockTasksList)
+        let worker = PListWorker(name: "TestTaskList")
+        let listCreated = worker.checkOrCreatePList(with: mockTasksList)
         XCTAssertTrue(listCreated, "The list does not exist")
     }
     
     // Refactor
     func testGetPListData() {
-        let worker = PListWorker()
-        worker.createPListIfNotExist(with: mockTasksList)
+        let worker = PListWorker(name: "TestTaskList")
+        worker.checkOrCreatePList(with: mockTasksList)
         let tasksList: [String] = worker.getPList()!
-        XCTAssertEqual(tasksList[0], "First Task", "")
+        XCTAssertNotNil(tasksList, "The List Should not be nil")
     }
     
     func testUpdatePListData() {
-        let worker = PListWorker()
+        let worker = PListWorker(name: "TestTaskList")
         worker.setDataToPList(task: "NewTask")
         let tasksList: [String] = worker.getPList()!
         XCTAssertEqual(tasksList.last, "NewTask")
@@ -47,5 +49,15 @@ class TODO_ListTests: XCTestCase {
         let presenter = ShowTasksPresenter()
         let tasksList = presenter.transformDataToViewModel(data: mockResponse!)
         XCTAssertEqual(tasksList, mockTasksList, "Both lists should be the same")
+    }
+    
+    func testRemoveDataFromPList() {
+        let worker = PListWorker(name: "TestTaskList")
+        worker.checkOrCreatePList(with: mockTasksList)
+        let tasksToRemove = ["First Task", "Second Task"]
+        worker.removeData(tasks: tasksToRemove)
+        let tasksList: [String] = worker.getPList()!
+        XCTAssertEqual(tasksList[0], "Third Task")
+        
     }
 }

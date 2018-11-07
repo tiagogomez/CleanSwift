@@ -18,7 +18,7 @@
 		196107632189F4E200FA6786 /* PListWorker.swift in Sources */ = {isa = PBXBuildFile; fileRef = 196107622189F4E200FA6786 /* PListWorker.swift */; };
 		196107652189F5D100FA6786 /* CreateTaskPresenter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 196107642189F5D100FA6786 /* CreateTaskPresenter.swift */; };
 		196107672189F73200FA6786 /* CreateTaskConfigurator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 196107662189F73200FA6786 /* CreateTaskConfigurator.swift */; };
-		19D08E5F218C8947005ABF54 /* ShowTasksViewControllerTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 19D08E5E218C8947005ABF54 /* ShowTasksViewControllerTableViewController.swift */; };
+		19D08E5F218C8947005ABF54 /* ShowTasksViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 19D08E5E218C8947005ABF54 /* ShowTasksViewController.swift */; };
 		19D08E61218C89C4005ABF54 /* ShowTasksInteractor.swift in Sources */ = {isa = PBXBuildFile; fileRef = 19D08E60218C89C4005ABF54 /* ShowTasksInteractor.swift */; };
 		19D08E63218C8B21005ABF54 /* ShowTasksPresenter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 19D08E62218C8B21005ABF54 /* ShowTasksPresenter.swift */; };
 		19D08E65218C8C5F005ABF54 /* ShowTasksConfigurator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 19D08E64218C8C5F005ABF54 /* ShowTasksConfigurator.swift */; };
@@ -27,6 +27,8 @@
 		19D653DC2191F4270042AE7A /* CreateTaskRouter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 19D653DB2191F4270042AE7A /* CreateTaskRouter.swift */; };
 		19D653E02192288E0042AE7A /* TaskViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 19D653DE2192288E0042AE7A /* TaskViewCell.swift */; };
 		19D653E12192288E0042AE7A /* TaskViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 19D653DF2192288E0042AE7A /* TaskViewCell.xib */; };
+		19DD8C74219329E1009E23D4 /* MarkTaskAsDoneInteractor.swift in Sources */ = {isa = PBXBuildFile; fileRef = 19DD8C73219329E1009E23D4 /* MarkTaskAsDoneInteractor.swift */; };
+		19DD8C7621932A39009E23D4 /* MarkTaskAsDoneModels.swift in Sources */ = {isa = PBXBuildFile; fileRef = 19DD8C7521932A39009E23D4 /* MarkTaskAsDoneModels.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -55,7 +57,7 @@
 		196107622189F4E200FA6786 /* PListWorker.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PListWorker.swift; sourceTree = "<group>"; };
 		196107642189F5D100FA6786 /* CreateTaskPresenter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CreateTaskPresenter.swift; sourceTree = "<group>"; };
 		196107662189F73200FA6786 /* CreateTaskConfigurator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CreateTaskConfigurator.swift; sourceTree = "<group>"; };
-		19D08E5E218C8947005ABF54 /* ShowTasksViewControllerTableViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ShowTasksViewControllerTableViewController.swift; sourceTree = "<group>"; };
+		19D08E5E218C8947005ABF54 /* ShowTasksViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ShowTasksViewController.swift; sourceTree = "<group>"; };
 		19D08E60218C89C4005ABF54 /* ShowTasksInteractor.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ShowTasksInteractor.swift; sourceTree = "<group>"; };
 		19D08E62218C8B21005ABF54 /* ShowTasksPresenter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ShowTasksPresenter.swift; sourceTree = "<group>"; };
 		19D08E64218C8C5F005ABF54 /* ShowTasksConfigurator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ShowTasksConfigurator.swift; sourceTree = "<group>"; };
@@ -64,6 +66,8 @@
 		19D653DB2191F4270042AE7A /* CreateTaskRouter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CreateTaskRouter.swift; sourceTree = "<group>"; };
 		19D653DE2192288E0042AE7A /* TaskViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TaskViewCell.swift; sourceTree = "<group>"; };
 		19D653DF2192288E0042AE7A /* TaskViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = TaskViewCell.xib; sourceTree = "<group>"; };
+		19DD8C73219329E1009E23D4 /* MarkTaskAsDoneInteractor.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MarkTaskAsDoneInteractor.swift; sourceTree = "<group>"; };
+		19DD8C7521932A39009E23D4 /* MarkTaskAsDoneModels.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MarkTaskAsDoneModels.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -127,6 +131,7 @@
 		196107582189E99E00FA6786 /* Scenes */ = {
 			isa = PBXGroup;
 			children = (
+				19DD8C7221931DE6009E23D4 /* Common */,
 				19D653DD2192285B0042AE7A /* MarkTaskAsDone */,
 				1961075A2189EA3300FA6786 /* ShowTasks */,
 				196107592189E9A800FA6786 /* CreateTask */,
@@ -150,12 +155,10 @@
 		1961075A2189EA3300FA6786 /* ShowTasks */ = {
 			isa = PBXGroup;
 			children = (
-				19D08E5E218C8947005ABF54 /* ShowTasksViewControllerTableViewController.swift */,
 				19D08E60218C89C4005ABF54 /* ShowTasksInteractor.swift */,
 				19D08E62218C8B21005ABF54 /* ShowTasksPresenter.swift */,
 				19D08E64218C8C5F005ABF54 /* ShowTasksConfigurator.swift */,
 				19D08E66218C8E5F005ABF54 /* ShowTasksModels.swift */,
-				196107622189F4E200FA6786 /* PListWorker.swift */,
 				19D653D92191E3840042AE7A /* ShowTasksRouter.swift */,
 			);
 			path = ShowTasks;
@@ -164,10 +167,21 @@
 		19D653DD2192285B0042AE7A /* MarkTaskAsDone */ = {
 			isa = PBXGroup;
 			children = (
+				19DD8C73219329E1009E23D4 /* MarkTaskAsDoneInteractor.swift */,
+				19DD8C7521932A39009E23D4 /* MarkTaskAsDoneModels.swift */,
+			);
+			path = MarkTaskAsDone;
+			sourceTree = "<group>";
+		};
+		19DD8C7221931DE6009E23D4 /* Common */ = {
+			isa = PBXGroup;
+			children = (
+				19D08E5E218C8947005ABF54 /* ShowTasksViewController.swift */,
+				196107622189F4E200FA6786 /* PListWorker.swift */,
 				19D653DE2192288E0042AE7A /* TaskViewCell.swift */,
 				19D653DF2192288E0042AE7A /* TaskViewCell.xib */,
 			);
-			path = MarkTaskAsDone;
+			path = Common;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -277,13 +291,15 @@
 				19D08E67218C8E5F005ABF54 /* ShowTasksModels.swift in Sources */,
 				19D653DC2191F4270042AE7A /* CreateTaskRouter.swift in Sources */,
 				196107672189F73200FA6786 /* CreateTaskConfigurator.swift in Sources */,
+				19DD8C7621932A39009E23D4 /* MarkTaskAsDoneModels.swift in Sources */,
 				1961075C2189ED7E00FA6786 /* CreateTaskTableViewController.swift in Sources */,
 				1961075E2189F12F00FA6786 /* CreateTaskModels.swift in Sources */,
 				19D653E02192288E0042AE7A /* TaskViewCell.swift in Sources */,
 				19D08E61218C89C4005ABF54 /* ShowTasksInteractor.swift in Sources */,
-				19D08E5F218C8947005ABF54 /* ShowTasksViewControllerTableViewController.swift in Sources */,
+				19D08E5F218C8947005ABF54 /* ShowTasksViewController.swift in Sources */,
 				196107652189F5D100FA6786 /* CreateTaskPresenter.swift in Sources */,
 				19D08E65218C8C5F005ABF54 /* ShowTasksConfigurator.swift in Sources */,
+				19DD8C74219329E1009E23D4 /* MarkTaskAsDoneInteractor.swift in Sources */,
 				19D08E63218C8B21005ABF54 /* ShowTasksPresenter.swift in Sources */,
 				196107602189F3FA00FA6786 /* CreateTaskInteractor.swift in Sources */,
 				196107392189E11C00FA6786 /* AppDelegate.swift in Sources */,

@@ -10,11 +10,13 @@ import UIKit
 
 class PListWorker {
     
-    var plistURL : URL {
+    var plistURL : URL
+    
+    init(name: String) {
         let documentDirectoryURL =  try! FileManager.default.url(for: .documentDirectory, in: .userDomainMask, appropriateFor: nil, create: false)
-        return documentDirectoryURL.appendingPathComponent("TaskList.plist")
-    }
-
+        self.plistURL = documentDirectoryURL.appendingPathComponent("\(name).plist")
+        }
+    
     func checkOrCreatePList(with data: [String]?) -> Bool {
         do {
             let fileManager = FileManager.default
@@ -45,12 +47,25 @@ class PListWorker {
             var tasksList: [String] = try loadPropertyList()
             tasksList.append(task)
             try savePropertyList(tasksList)
-            print("list", tasksList)
         } catch {
             print(error)
         }
     }
-        
+    
+    func removeData(tasks: [String]){
+        do {
+            var tasksList: [String] = try loadPropertyList()
+            for taskToRemove in tasks {
+                tasksList = tasksList.filter { (task: String) -> Bool in
+                    return (task != taskToRemove)
+                }
+            }
+            try savePropertyList(tasksList)
+        } catch {
+            print(error)
+        }
+    }
+    
     private func savePropertyList(_ plist: Any) throws {
         let plistData = try PropertyListSerialization.data(fromPropertyList: plist, format: .xml, options: 0)
         try plistData.write(to: plistURL)

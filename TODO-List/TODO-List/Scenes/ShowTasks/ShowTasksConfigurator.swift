@@ -19,6 +19,9 @@ extension ShowTasksInteractor: ShowTasksViewControllerOutput {
 extension ShowTasksPresenter: ShowTasksInteractorOutput {
 }
 
+extension MarkTaskAsDoneInteractor: MarkTaskAsDoneViewControllerOutput {
+}
+
 class ShowTasksConfigurator {
     // MARK: Object lifecycle
     
@@ -36,7 +39,11 @@ class ShowTasksConfigurator {
         let interactor = ShowTasksInteractor()
         interactor.output = presenter
         
+        let markTaskAsDoneInteractor = MarkTaskAsDoneInteractor()
+        markTaskAsDoneInteractor.output = presenter
+        
         viewController.output = interactor
+        viewController.markTaskAsDoneOutput = markTaskAsDoneInteractor
         viewController.router = router
     }
 }
