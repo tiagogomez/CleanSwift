@@ -11,11 +11,14 @@ import XCTest
 
 class TODO_ListTests: XCTestCase {
     
-    var mockTasksList: [String]?
+    var mockTasksList: [[String : Any]]?
+    let task1: [String:Any] = ["task" : "First Task", "isDone" : false]
+    let task2: [String:Any] = ["task" : "Second Task", "isDone" : true]
+    let task3: [String:Any] = ["task" : "Third Task", "isDone" : false]
     var mockResponse: ShowTasksResponse?
     
     override func setUp() {
-        mockTasksList = ["First Task", "Second Task", "Third Task"]
+        mockTasksList = [task1,task2, task3]
         mockResponse = ShowTasksResponse(tasksList: mockTasksList!)
     }
     
@@ -34,21 +37,24 @@ class TODO_ListTests: XCTestCase {
     func testGetPListData() {
         let worker = PListWorker(name: "TestTaskList")
         worker.checkOrCreatePList(with: mockTasksList)
-        let tasksList: [String] = worker.getPList()!
+        let tasksList: [[String : Any]] = worker.getPList()!
         XCTAssertNotNil(tasksList, "The List Should not be nil")
     }
     
     func testUpdatePListData() {
         let worker = PListWorker(name: "TestTaskList")
-        worker.setDataToPList(task: "NewTask")
-        let tasksList: [String] = worker.getPList()!
-        XCTAssertEqual(tasksList.last, "NewTask")
+        let newTask: String = "NewTask"
+        worker.setDataToPList(task: newTask)
+        let tasksList: [[String : Any]] = worker.getPList()!
+        let actualTask: String = tasksList.last?["task"] as! String
+        XCTAssertEqual(actualTask, "NewTask")
     }
     
     func testTransformData() {
         let presenter = ShowTasksPresenter()
-        let tasksList = presenter.transformDataToViewModel(data: mockResponse!)
-        XCTAssertEqual(tasksList, mockTasksList, "Both lists should be the same")
+        let expectedValue = ["First Task", "Second Task", "Third Task"]
+        let tasksListViewModel = presenter.transformDataToViewModel(data: mockResponse!)
+        XCTAssertEqual(tasksListViewModel, expectedValue, "Both lists should be the same")
     }
     
     func testRemoveDataFromPList() {
@@ -56,8 +62,9 @@ class TODO_ListTests: XCTestCase {
         worker.checkOrCreatePList(with: mockTasksList)
         let tasksToRemove = ["First Task", "Second Task"]
         worker.removeData(tasks: tasksToRemove)
-        let tasksList: [String] = worker.getPList()!
-        XCTAssertEqual(tasksList[0], "Third Task")
+        let tasksList: [[String : Any]] = worker.getPList()!
+        let actualTask: String = tasksList[0]["task"] as! String
+        XCTAssertEqual(actualTask, "Third Task")
         
     }
 }

@@ -28,6 +28,10 @@ class ShowTasksPresenter: ShowTasksPresenterInput {
     }
     
     func transformDataToViewModel(data: ShowTasksResponse) -> [String] {
-        return data.tasksList as [String]
+        var transformedData: [String]?
+        transformedData = data.tasksList.map { (task: [String : Any]) -> String in
+            return task["task"] as! String
+        }
+        return transformedData ?? []
     }
 }

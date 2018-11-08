@@ -27,7 +27,6 @@ class CreateTaskViewController: UIViewController, CreateTaskViewControllerInput 
     @IBAction func buttonPressed(_ sender: Any) {
         if taskField.text != "" {
             setTask(text: taskField.text!)
-            router.navigateToShowTasks()
         }
     }
     
@@ -52,6 +51,7 @@ class CreateTaskViewController: UIViewController, CreateTaskViewControllerInput 
     // MARK: Display logic
     func displayTaskList(viewModel: CreateTaskViewModel) {
         // NOTE: Display the result from the Presenter
+        router.navigateToShowTasks()
     }
 }
 

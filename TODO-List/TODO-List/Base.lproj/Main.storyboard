@@ -59,6 +59,7 @@
                     </view>
                     <navigationItem key="navigationItem" id="L6e-0n-SYN"/>
                     <connections>
+                        <outlet property="markAsDoneButton" destination="UVZ-ME-lQo" id="6MH-Rw-Dme"/>
                         <outlet property="tableView" destination="Zh9-Vt-heu" id="KKi-lO-MQk"/>
                     </connections>
                 </viewController>

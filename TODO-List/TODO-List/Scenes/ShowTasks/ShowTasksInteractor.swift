@@ -25,7 +25,7 @@ class ShowTasksInteractor: ShowTasksInteractorInput {
         worker = PListWorker(name: "TaskList")
         let listExist = worker.checkOrCreatePList(with: nil)
         if listExist {
-            let tasksList: [String] = worker.getPList()!
+            let tasksList: [[String : Any]] = worker.getPList()!
             let response = ShowTasksResponse(tasksList: tasksList)
             output.presentTaskList(response: response)
         }

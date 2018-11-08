@@ -23,7 +23,8 @@ protocol MarkTaskAsDoneViewControllerOutput {
 class ShowTasksViewController: UIViewController, UITableViewDataSource, UITableViewDelegate {
     
     @IBOutlet weak var tableView: UITableView!
-
+    @IBOutlet weak var markAsDoneButton: UIButton!
+    
     var output: ShowTasksViewControllerOutput!
     var markTaskAsDoneOutput: MarkTaskAsDoneViewControllerOutput!
     var router: ShowTasksRouter!
@@ -42,6 +43,7 @@ class ShowTasksViewController: UIViewController, UITableViewDataSource, UITableV
             }
             let request = MarkTaskAsDoneRequest(doneTasks: selectedTasks)
             markTaskAsDoneOutput.removeTasks(request: request)
+            markAsDoneButton.isHidden = true
         }
     }
     
@@ -70,12 +72,27 @@ class ShowTasksViewController: UIViewController, UITableViewDataSource, UITableV
         return cell
     }
     
+    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        markAsDoneButton.isHidden = false
+    }
+    
+    func tableView(_ tableView: UITableView, didDeselectRowAt indexPath: IndexPath) {
+        if let indexForSelectedTasks = tableView.indexPathsForSelectedRows {
+            if indexForSelectedTasks.isEmpty {
+                markAsDoneButton.isHidden = true
+            }
+            return
+        }
+        markAsDoneButton.isHidden = true
+    }
+    
     func setupTableView () {
         tableView.delegate = self
         tableView.dataSource = self
         tableView.register(UINib(nibName: "TaskViewCell", bundle: nil), forCellReuseIdentifier: "TaskViewCell")
         tableView.allowsMultipleSelection = true
         tableView.allowsMultipleSelectionDuringEditing = true
+        markAsDoneButton.isHidden = true
     }
     
     func showTasks() {

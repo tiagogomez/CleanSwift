@@ -17,6 +17,9 @@ class CreateTaskRouter: CreateTaskRouterInput {
     weak var viewController: CreateTaskViewController!
     
     func navigateToShowTasks() {
+//        viewController.dismiss(animated: true) {
+//            // Nothing to do here.
+//        }
         let storyboard = UIStoryboard(name: "Main", bundle: nil)
         let controller = storyboard.instantiateViewController(withIdentifier: "ShowTasksViewController")
         viewController.present(controller, animated: true, completion: nil)

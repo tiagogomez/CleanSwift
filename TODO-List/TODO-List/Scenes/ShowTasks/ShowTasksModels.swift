@@ -13,7 +13,7 @@ struct ShowTasksRequest {
 }
 
 struct ShowTasksResponse {
-    let tasksList: [String]
+    let tasksList: [[String : Any]]
 }
 
 struct ShowTasksViewModel {
