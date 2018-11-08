@@ -39,27 +39,18 @@ class PListWorker {
         return true
     }
     
-    func getPList() -> [[String : Any]]? {
-        do{
-            let tasksList: [[String : Any]] = try loadPropertyList()
-            return tasksList
-        } catch {
-            print(error)
-            return nil
-        }
+    func getPList() throws -> [[String : Any]]? {
+        let tasksList: [[String : Any]] = try loadPropertyList()
+        return tasksList
     }
     
-    func setDataToPList(task: String) {
-        do {
-            var tasksList: [[String : Any]] = try loadPropertyList()
-            tasksList.append(["task" : task, "isDone": false])
-            try savePropertyList(tasksList)
-        } catch {
-            print(error)
-        }
+    func setDataToPList(task: String) throws {
+        var tasksList: [[String : Any]] = try loadPropertyList()
+        tasksList.append(["task" : task, "isDone": false])
+        try savePropertyList(tasksList)
     }
     
-    func removeData(tasks: [String]) {
+    func removeData(tasks: [String]) throws {
         do {
             var tasksList: [[String : Any]] = try loadPropertyList()
             for taskToRemove in tasks {

@@ -9,7 +9,7 @@
 import UIKit
 
 protocol MarkTaskAsDoneInteractorInput {
-    func removeTasks(request: MarkTaskAsDoneRequest)
+    func removeTasks(request: MarkTaskAsDoneRequest) throws
 }
 
 class MarkTaskAsDoneInteractor: MarkTaskAsDoneInteractorInput {
@@ -17,10 +17,12 @@ class MarkTaskAsDoneInteractor: MarkTaskAsDoneInteractorInput {
     var output: ShowTasksInteractorOutput!
     var worker: PListWorker!
     
-    func removeTasks(request: MarkTaskAsDoneRequest) {
+    func removeTasks(request: MarkTaskAsDoneRequest) throws {
         worker = PListWorker(name: "TaskList")
-        worker.removeData(tasks: request.doneTasks)
-        let tasksList: [[String : Any]] = worker.getPList()!
+        try worker.removeData(tasks: request.doneTasks)
+        guard let tasksList: [[String : Any]] = try worker.getPList() else {
+            throw PListWorkerError.couldNotRetrieveAnyData
+        }
         let response = ShowTasksResponse(tasksList: tasksList)
         output.presentTaskList(response: response)
     }

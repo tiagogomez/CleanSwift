@@ -26,7 +26,9 @@ class ShowTasksInteractor: ShowTasksInteractorInput {
         guard let _ = try worker.checkOrCreatePList(with: nil) else {
             throw PListWorkerError.theListCouldNotBeCreated
         }
-        let tasksList: [[String : Any]] = worker.getPList()!
+        guard let tasksList: [[String : Any]] = try worker.getPList() else {
+            throw PListWorkerError.couldNotRetrieveAnyData
+        }
         let response = ShowTasksResponse(tasksList: tasksList)
         output.presentTaskList(response: response)
     }

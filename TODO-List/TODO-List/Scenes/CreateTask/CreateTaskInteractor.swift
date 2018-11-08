@@ -22,12 +22,12 @@ class CreateTaskInteractor: CreateTaskInteractorInput {
     var worker: PListWorker!
     
     // MARK: Business logic
-    func storeTask(request: CreateTaskRequest) throws{
+    func storeTask(request: CreateTaskRequest) throws {
         // NOTE: Create some Worker to do the work
         
         worker = PListWorker(name: "TaskList")
         _ = try worker.checkOrCreatePList(with: nil)
-        worker.setDataToPList(task: request.task)
+        try worker.setDataToPList(task: request.task)
         
         // NOTE: Pass the result to the Presenter
         

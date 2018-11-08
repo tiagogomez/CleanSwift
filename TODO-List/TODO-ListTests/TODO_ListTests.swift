@@ -29,25 +29,37 @@ class TODO_ListTests: XCTestCase {
     
     func testPListCreated() {
         let worker = PListWorker(name: "TestTaskList")
-        let listCreated = worker.checkOrCreatePList(with: mockTasksList)
-        XCTAssertTrue(listCreated, "The list does not exist")
+        do {
+            let listCreated = try worker.checkOrCreatePList(with: mockTasksList)
+            XCTAssertTrue(listCreated!, "The list does not exist")
+        }catch {
+            print("Something Wrong Happened")
+        }
     }
     
     // Refactor
     func testGetPListData() {
         let worker = PListWorker(name: "TestTaskList")
-        _ = worker.checkOrCreatePList(with: mockTasksList)
-        let tasksList: [[String : Any]] = worker.getPList()!
-        XCTAssertNotNil(tasksList, "The List Should not be nil")
+        do {
+            _ = try worker.checkOrCreatePList(with: mockTasksList)
+            let tasksList: [[String : Any]] = try worker.getPList()!
+            XCTAssertNotNil(tasksList, "The List Should not be nil")
+        } catch {
+            print("Something Wrong Happened")
+        }
     }
     
     func testUpdatePListData() {
         let worker = PListWorker(name: "TestTaskList")
         let newTask: String = "NewTask"
-        worker.setDataToPList(task: newTask)
-        let tasksList: [[String : Any]] = worker.getPList()!
-        let actualTask: String = tasksList.last?["task"] as! String
-        XCTAssertEqual(actualTask, "NewTask")
+        do {
+            try worker.setDataToPList(task: newTask)
+            let tasksList: [[String : Any]] = try worker.getPList()!
+            let actualTask: String = tasksList.last?["task"] as! String
+            XCTAssertEqual(actualTask, "NewTask")
+        } catch {
+            print("Something Wrong Happened")
+        }
     }
     
     func testTransformData() {
@@ -59,12 +71,15 @@ class TODO_ListTests: XCTestCase {
     
     func testRemoveDataFromPList() {
         let worker = PListWorker(name: "TestTaskList")
-        _ = worker.checkOrCreatePList(with: mockTasksList)
-        let tasksToRemove = ["First Task", "Second Task"]
-        _ = worker.removeData(tasks: tasksToRemove)
-        let tasksList: [[String : Any]] = worker.getPList()!
-        let actualTask: String = tasksList[0]["task"] as! String
-        XCTAssertEqual(actualTask, "Third Task")
-        
+        do {
+            _ = try worker.checkOrCreatePList(with: mockTasksList)
+            let tasksToRemove = ["First Task", "Second Task"]
+            _ = try worker.removeData(tasks: tasksToRemove)
+            let tasksList: [[String : Any]] = try worker.getPList()!
+            let actualTask: String = tasksList[0]["task"] as! String
+            XCTAssertEqual(actualTask, "Third Task")
+        } catch {
+            print("Something Wrong Happened")
+        }
     }
 }

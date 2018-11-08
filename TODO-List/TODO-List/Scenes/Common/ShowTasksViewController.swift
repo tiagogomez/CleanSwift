@@ -17,7 +17,7 @@ protocol ShowTasksViewControllerOutput {
 }
 
 protocol MarkTaskAsDoneViewControllerOutput {
-    func removeTasks(request: MarkTaskAsDoneRequest)
+    func removeTasks(request: MarkTaskAsDoneRequest) throws
 }
 
 class ShowTasksViewController: UIViewController, UITableViewDataSource, UITableViewDelegate {
@@ -42,8 +42,15 @@ class ShowTasksViewController: UIViewController, UITableViewDataSource, UITableV
                 selectedTasks.append(tasksList[index.row])
             }
             let request = MarkTaskAsDoneRequest(doneTasks: selectedTasks)
-            markTaskAsDoneOutput.removeTasks(request: request)
-            markAsDoneButton.isHidden = true
+            do{
+                try markTaskAsDoneOutput.removeTasks(request: request)
+                markAsDoneButton.isHidden = true
+            } catch PListWorkerError.couldNotRetrieveAnyData {
+                print("TheDataCouldNotBeRetrieved")
+            } catch {
+                
+                print("Something Happened")
+            }
         }
     }
     
@@ -101,10 +108,11 @@ class ShowTasksViewController: UIViewController, UITableViewDataSource, UITableV
             try output.requestTask(request: request)
         } catch PListWorkerError.theListCouldNotBeCreated {
             print("TheListCouldNotBeCreated")
+        } catch PListWorkerError.couldNotRetrieveAnyData{
+            print("TheDataCouldNotBeRetrieved")
         } catch {
             print("Something Happened")
         }
-        
     }
     
     private var messageSubView: UIView = UIView()
