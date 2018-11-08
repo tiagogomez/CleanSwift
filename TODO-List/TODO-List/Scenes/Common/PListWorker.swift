@@ -13,6 +13,13 @@ struct TaskModel {
     let taskState: Bool = false
 }
 
+enum PListWorkerError: Error {
+    case theListCouldNotBeCreated
+    case couldNotRetrieveAnyData
+    case couldNotSaveTheData
+    case couldNotDeleteTheData
+}
+
 class PListWorker {
     
     var plistURL : URL
@@ -22,19 +29,14 @@ class PListWorker {
         self.plistURL = documentDirectoryURL.appendingPathComponent("\(name).plist")
         }
     
-    func checkOrCreatePList(with data: [[String : Any]]?) -> Bool {
-        do {
-            let fileManager = FileManager.default
-            if (!fileManager.fileExists(atPath: plistURL.path)){
-                let toDoList = data ?? []
-                try savePropertyList(toDoList)
-                return true
-            }
+    func checkOrCreatePList(with data: [[String : Any]]?) throws -> Bool? {
+        let fileManager = FileManager.default
+        if (!fileManager.fileExists(atPath: plistURL.path)){
+            let toDoList = data ?? []
+            try savePropertyList(toDoList)
             return true
-        } catch {
-            print(error)
-            return false
         }
+        return true
     }
     
     func getPList() -> [[String : Any]]? {
@@ -47,7 +49,7 @@ class PListWorker {
         }
     }
     
-    func setDataToPList(task: String){
+    func setDataToPList(task: String) {
         do {
             var tasksList: [[String : Any]] = try loadPropertyList()
             tasksList.append(["task" : task, "isDone": false])

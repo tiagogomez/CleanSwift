@@ -36,7 +36,7 @@ class TODO_ListTests: XCTestCase {
     // Refactor
     func testGetPListData() {
         let worker = PListWorker(name: "TestTaskList")
-        worker.checkOrCreatePList(with: mockTasksList)
+        _ = worker.checkOrCreatePList(with: mockTasksList)
         let tasksList: [[String : Any]] = worker.getPList()!
         XCTAssertNotNil(tasksList, "The List Should not be nil")
     }
@@ -59,9 +59,9 @@ class TODO_ListTests: XCTestCase {
     
     func testRemoveDataFromPList() {
         let worker = PListWorker(name: "TestTaskList")
-        worker.checkOrCreatePList(with: mockTasksList)
+        _ = worker.checkOrCreatePList(with: mockTasksList)
         let tasksToRemove = ["First Task", "Second Task"]
-        worker.removeData(tasks: tasksToRemove)
+        _ = worker.removeData(tasks: tasksToRemove)
         let tasksList: [[String : Any]] = worker.getPList()!
         let actualTask: String = tasksList[0]["task"] as! String
         XCTAssertEqual(actualTask, "Third Task")

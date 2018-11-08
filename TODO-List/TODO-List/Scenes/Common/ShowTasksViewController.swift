@@ -13,7 +13,7 @@ protocol ShowTasksViewControllerInput {
 }
 
 protocol ShowTasksViewControllerOutput {
-    func requestTask(request: ShowTasksRequest)
+    func requestTask(request: ShowTasksRequest) throws
 }
 
 protocol MarkTaskAsDoneViewControllerOutput {
@@ -96,8 +96,15 @@ class ShowTasksViewController: UIViewController, UITableViewDataSource, UITableV
     }
     
     func showTasks() {
-        let request = ShowTasksRequest()
-        output.requestTask(request: request)
+        do{
+            let request = ShowTasksRequest()
+            try output.requestTask(request: request)
+        } catch PListWorkerError.theListCouldNotBeCreated {
+            print("TheListCouldNotBeCreated")
+        } catch {
+            print("Something Happened")
+        }
+        
     }
     
     private var messageSubView: UIView = UIView()

@@ -9,7 +9,6 @@
 import UIKit
 
 struct ShowTasksRequest {
-    //    let task: String
 }
 
 struct ShowTasksResponse {

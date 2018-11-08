@@ -9,7 +9,7 @@
 import UIKit
 
 protocol CreateTaskInteractorInput {
-    func storeTask(request: CreateTaskRequest)
+    func storeTask(request: CreateTaskRequest) throws
 }
 
 protocol CreateTaskInteractorOutput {
@@ -22,11 +22,11 @@ class CreateTaskInteractor: CreateTaskInteractorInput {
     var worker: PListWorker!
     
     // MARK: Business logic
-    func storeTask(request: CreateTaskRequest) {
+    func storeTask(request: CreateTaskRequest) throws{
         // NOTE: Create some Worker to do the work
         
         worker = PListWorker(name: "TaskList")
-        worker.checkOrCreatePList(with: nil)
+        _ = try worker.checkOrCreatePList(with: nil)
         worker.setDataToPList(task: request.task)
         
         // NOTE: Pass the result to the Presenter

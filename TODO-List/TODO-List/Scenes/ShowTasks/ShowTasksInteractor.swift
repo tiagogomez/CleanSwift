@@ -9,7 +9,7 @@
 import UIKit
 
 protocol ShowTasksInteractorInput {
-    func requestTask(request: ShowTasksRequest)
+    func requestTask(request: ShowTasksRequest) throws
 }
 
 protocol ShowTasksInteractorOutput {
@@ -21,13 +21,13 @@ class ShowTasksInteractor: ShowTasksInteractorInput {
     var output: ShowTasksInteractorOutput!
     var worker: PListWorker!
     
-    func requestTask(request: ShowTasksRequest) {
+    func requestTask(request: ShowTasksRequest) throws {
         worker = PListWorker(name: "TaskList")
-        let listExist = worker.checkOrCreatePList(with: nil)
-        if listExist {
-            let tasksList: [[String : Any]] = worker.getPList()!
-            let response = ShowTasksResponse(tasksList: tasksList)
-            output.presentTaskList(response: response)
+        guard let _ = try worker.checkOrCreatePList(with: nil) else {
+            throw PListWorkerError.theListCouldNotBeCreated
         }
+        let tasksList: [[String : Any]] = worker.getPList()!
+        let response = ShowTasksResponse(tasksList: tasksList)
+        output.presentTaskList(response: response)
     }
 }

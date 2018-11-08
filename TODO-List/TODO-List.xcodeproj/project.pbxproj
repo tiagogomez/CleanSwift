@@ -18,7 +18,6 @@
 		196107632189F4E200FA6786 /* PListWorker.swift in Sources */ = {isa = PBXBuildFile; fileRef = 196107622189F4E200FA6786 /* PListWorker.swift */; };
 		196107652189F5D100FA6786 /* CreateTaskPresenter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 196107642189F5D100FA6786 /* CreateTaskPresenter.swift */; };
 		196107672189F73200FA6786 /* CreateTaskConfigurator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 196107662189F73200FA6786 /* CreateTaskConfigurator.swift */; };
-		19CC771421946CF4000A62FA /* testplist.plist in Resources */ = {isa = PBXBuildFile; fileRef = 19CC771321946CF4000A62FA /* testplist.plist */; };
 		19D08E5F218C8947005ABF54 /* ShowTasksViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 19D08E5E218C8947005ABF54 /* ShowTasksViewController.swift */; };
 		19D08E61218C89C4005ABF54 /* ShowTasksInteractor.swift in Sources */ = {isa = PBXBuildFile; fileRef = 19D08E60218C89C4005ABF54 /* ShowTasksInteractor.swift */; };
 		19D08E63218C8B21005ABF54 /* ShowTasksPresenter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 19D08E62218C8B21005ABF54 /* ShowTasksPresenter.swift */; };
@@ -58,7 +57,6 @@
 		196107622189F4E200FA6786 /* PListWorker.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PListWorker.swift; sourceTree = "<group>"; };
 		196107642189F5D100FA6786 /* CreateTaskPresenter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CreateTaskPresenter.swift; sourceTree = "<group>"; };
 		196107662189F73200FA6786 /* CreateTaskConfigurator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CreateTaskConfigurator.swift; sourceTree = "<group>"; };
-		19CC771321946CF4000A62FA /* testplist.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = testplist.plist; sourceTree = "<group>"; };
 		19D08E5E218C8947005ABF54 /* ShowTasksViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ShowTasksViewController.swift; sourceTree = "<group>"; };
 		19D08E60218C89C4005ABF54 /* ShowTasksInteractor.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ShowTasksInteractor.swift; sourceTree = "<group>"; };
 		19D08E62218C8B21005ABF54 /* ShowTasksPresenter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ShowTasksPresenter.swift; sourceTree = "<group>"; };
@@ -117,7 +115,6 @@
 				1961073F2189E11D00FA6786 /* Assets.xcassets */,
 				196107412189E11D00FA6786 /* LaunchScreen.storyboard */,
 				196107442189E11D00FA6786 /* Info.plist */,
-				19CC771321946CF4000A62FA /* testplist.plist */,
 			);
 			path = "TODO-List";
 			sourceTree = "<group>";
@@ -269,7 +266,6 @@
 			buildActionMask = 2147483647;
 			files = (
 				196107432189E11D00FA6786 /* LaunchScreen.storyboard in Resources */,
-				19CC771421946CF4000A62FA /* testplist.plist in Resources */,
 				196107402189E11D00FA6786 /* Assets.xcassets in Resources */,
 				1961073E2189E11C00FA6786 /* Main.storyboard in Resources */,
 				19D653E12192288E0042AE7A /* TaskViewCell.xib in Resources */,

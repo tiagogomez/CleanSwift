@@ -13,7 +13,7 @@ protocol CreateTaskViewControllerInput {
 }
 
 protocol CreateTaskViewControllerOutput {
-    func storeTask(request: CreateTaskRequest)
+    func storeTask(request: CreateTaskRequest) throws
 }
 
 class CreateTaskViewController: UIViewController, CreateTaskViewControllerInput {
@@ -45,7 +45,13 @@ class CreateTaskViewController: UIViewController, CreateTaskViewControllerInput 
     // MARK: Event handling
     func setTask(text: String) {
         let request = CreateTaskRequest(task: text)
-        output.storeTask(request: request)
+        do {
+            try output.storeTask(request: request)
+        } catch PListWorkerError.theListCouldNotBeCreated {
+            print("TheListCouldNotBeCreated")
+        } catch {
+            print("Something Happened")
+        }
     }
     
     // MARK: Display logic
