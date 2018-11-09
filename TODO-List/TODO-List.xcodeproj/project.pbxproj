@@ -18,6 +18,11 @@
 		196107632189F4E200FA6786 /* PListWorker.swift in Sources */ = {isa = PBXBuildFile; fileRef = 196107622189F4E200FA6786 /* PListWorker.swift */; };
 		196107652189F5D100FA6786 /* CreateTaskPresenter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 196107642189F5D100FA6786 /* CreateTaskPresenter.swift */; };
 		196107672189F73200FA6786 /* CreateTaskConfigurator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 196107662189F73200FA6786 /* CreateTaskConfigurator.swift */; };
+		19CFB8A92195C0C5009B5EEA /* ShowDoneTasksViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 19CFB8A82195C0C5009B5EEA /* ShowDoneTasksViewController.swift */; };
+		19CFB8AB2195C116009B5EEA /* ShowDoneTasksModels.swift in Sources */ = {isa = PBXBuildFile; fileRef = 19CFB8AA2195C116009B5EEA /* ShowDoneTasksModels.swift */; };
+		19CFB8AD2195C533009B5EEA /* ShowDoneTasksInteractor.swift in Sources */ = {isa = PBXBuildFile; fileRef = 19CFB8AC2195C533009B5EEA /* ShowDoneTasksInteractor.swift */; };
+		19CFB8AF2195C983009B5EEA /* ShowDoneTasksPresenter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 19CFB8AE2195C983009B5EEA /* ShowDoneTasksPresenter.swift */; };
+		19CFB8B12195CA7B009B5EEA /* ShowDoneTasksConfigurator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 19CFB8B02195CA7B009B5EEA /* ShowDoneTasksConfigurator.swift */; };
 		19D08E5F218C8947005ABF54 /* ShowTasksViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 19D08E5E218C8947005ABF54 /* ShowTasksViewController.swift */; };
 		19D08E61218C89C4005ABF54 /* ShowTasksInteractor.swift in Sources */ = {isa = PBXBuildFile; fileRef = 19D08E60218C89C4005ABF54 /* ShowTasksInteractor.swift */; };
 		19D08E63218C8B21005ABF54 /* ShowTasksPresenter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 19D08E62218C8B21005ABF54 /* ShowTasksPresenter.swift */; };
@@ -57,6 +62,11 @@
 		196107622189F4E200FA6786 /* PListWorker.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PListWorker.swift; sourceTree = "<group>"; };
 		196107642189F5D100FA6786 /* CreateTaskPresenter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CreateTaskPresenter.swift; sourceTree = "<group>"; };
 		196107662189F73200FA6786 /* CreateTaskConfigurator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CreateTaskConfigurator.swift; sourceTree = "<group>"; };
+		19CFB8A82195C0C5009B5EEA /* ShowDoneTasksViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ShowDoneTasksViewController.swift; sourceTree = "<group>"; };
+		19CFB8AA2195C116009B5EEA /* ShowDoneTasksModels.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ShowDoneTasksModels.swift; sourceTree = "<group>"; };
+		19CFB8AC2195C533009B5EEA /* ShowDoneTasksInteractor.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ShowDoneTasksInteractor.swift; sourceTree = "<group>"; };
+		19CFB8AE2195C983009B5EEA /* ShowDoneTasksPresenter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ShowDoneTasksPresenter.swift; sourceTree = "<group>"; };
+		19CFB8B02195CA7B009B5EEA /* ShowDoneTasksConfigurator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ShowDoneTasksConfigurator.swift; sourceTree = "<group>"; };
 		19D08E5E218C8947005ABF54 /* ShowTasksViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ShowTasksViewController.swift; sourceTree = "<group>"; };
 		19D08E60218C89C4005ABF54 /* ShowTasksInteractor.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ShowTasksInteractor.swift; sourceTree = "<group>"; };
 		19D08E62218C8B21005ABF54 /* ShowTasksPresenter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ShowTasksPresenter.swift; sourceTree = "<group>"; };
@@ -131,10 +141,11 @@
 		196107582189E99E00FA6786 /* Scenes */ = {
 			isa = PBXGroup;
 			children = (
+				19CFB8A72195C089009B5EEA /* ShowDoneTasks */,
 				19DD8C7221931DE6009E23D4 /* Common */,
-				19D653DD2192285B0042AE7A /* MarkTaskAsDone */,
 				1961075A2189EA3300FA6786 /* ShowTasks */,
 				196107592189E9A800FA6786 /* CreateTask */,
+				19D653DD2192285B0042AE7A /* MarkTaskAsDone */,
 			);
 			path = Scenes;
 			sourceTree = "<group>";
@@ -155,6 +166,7 @@
 		1961075A2189EA3300FA6786 /* ShowTasks */ = {
 			isa = PBXGroup;
 			children = (
+				19D08E5E218C8947005ABF54 /* ShowTasksViewController.swift */,
 				19D08E60218C89C4005ABF54 /* ShowTasksInteractor.swift */,
 				19D08E62218C8B21005ABF54 /* ShowTasksPresenter.swift */,
 				19D08E64218C8C5F005ABF54 /* ShowTasksConfigurator.swift */,
@@ -162,6 +174,18 @@
 				19D653D92191E3840042AE7A /* ShowTasksRouter.swift */,
 			);
 			path = ShowTasks;
+			sourceTree = "<group>";
+		};
+		19CFB8A72195C089009B5EEA /* ShowDoneTasks */ = {
+			isa = PBXGroup;
+			children = (
+				19CFB8A82195C0C5009B5EEA /* ShowDoneTasksViewController.swift */,
+				19CFB8AC2195C533009B5EEA /* ShowDoneTasksInteractor.swift */,
+				19CFB8AE2195C983009B5EEA /* ShowDoneTasksPresenter.swift */,
+				19CFB8AA2195C116009B5EEA /* ShowDoneTasksModels.swift */,
+				19CFB8B02195CA7B009B5EEA /* ShowDoneTasksConfigurator.swift */,
+			);
+			path = ShowDoneTasks;
 			sourceTree = "<group>";
 		};
 		19D653DD2192285B0042AE7A /* MarkTaskAsDone */ = {
@@ -176,7 +200,6 @@
 		19DD8C7221931DE6009E23D4 /* Common */ = {
 			isa = PBXGroup;
 			children = (
-				19D08E5E218C8947005ABF54 /* ShowTasksViewController.swift */,
 				196107622189F4E200FA6786 /* PListWorker.swift */,
 				19D653DE2192288E0042AE7A /* TaskViewCell.swift */,
 				19D653DF2192288E0042AE7A /* TaskViewCell.xib */,
@@ -289,6 +312,7 @@
 				196107632189F4E200FA6786 /* PListWorker.swift in Sources */,
 				19D653DA2191E3840042AE7A /* ShowTasksRouter.swift in Sources */,
 				19D08E67218C8E5F005ABF54 /* ShowTasksModels.swift in Sources */,
+				19CFB8AF2195C983009B5EEA /* ShowDoneTasksPresenter.swift in Sources */,
 				19D653DC2191F4270042AE7A /* CreateTaskRouter.swift in Sources */,
 				196107672189F73200FA6786 /* CreateTaskConfigurator.swift in Sources */,
 				19DD8C7621932A39009E23D4 /* MarkTaskAsDoneModels.swift in Sources */,
@@ -297,9 +321,13 @@
 				19D653E02192288E0042AE7A /* TaskViewCell.swift in Sources */,
 				19D08E61218C89C4005ABF54 /* ShowTasksInteractor.swift in Sources */,
 				19D08E5F218C8947005ABF54 /* ShowTasksViewController.swift in Sources */,
+				19CFB8B12195CA7B009B5EEA /* ShowDoneTasksConfigurator.swift in Sources */,
 				196107652189F5D100FA6786 /* CreateTaskPresenter.swift in Sources */,
+				19CFB8AD2195C533009B5EEA /* ShowDoneTasksInteractor.swift in Sources */,
 				19D08E65218C8C5F005ABF54 /* ShowTasksConfigurator.swift in Sources */,
 				19DD8C74219329E1009E23D4 /* MarkTaskAsDoneInteractor.swift in Sources */,
+				19CFB8AB2195C116009B5EEA /* ShowDoneTasksModels.swift in Sources */,
+				19CFB8A92195C0C5009B5EEA /* ShowDoneTasksViewController.swift in Sources */,
 				19D08E63218C8B21005ABF54 /* ShowTasksPresenter.swift in Sources */,
 				196107602189F3FA00FA6786 /* CreateTaskInteractor.swift in Sources */,
 				196107392189E11C00FA6786 /* AppDelegate.swift in Sources */,
