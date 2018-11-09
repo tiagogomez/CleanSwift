@@ -12,7 +12,7 @@ struct ShowTasksRequest {
 }
 //To Do Change Dictionary for an object
 struct ShowTasksResponse {
-    let tasksList: [[String : Any]]
+    let tasksList: [TaskModel]
 }
 
 struct ShowTasksViewModel {

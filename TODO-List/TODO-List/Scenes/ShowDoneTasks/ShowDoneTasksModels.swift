@@ -11,7 +11,7 @@ struct ShowDoneTasksRequest {
 
 //To Do Change Dictionary for an object
 struct ShowDoneTasksResponse {
-    let tasksList: [[String : Any]]
+    let tasksList: [TaskModel]
 }
 
 struct ShowDoneTasksViewModel {

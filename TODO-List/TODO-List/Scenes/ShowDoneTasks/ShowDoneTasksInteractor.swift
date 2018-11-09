@@ -26,7 +26,7 @@ class ShowDoneTasksInteractor: ShowDoneTasksInteractorInput {
         guard let _ = try worker.checkOrCreatePList(with: nil) else {
             throw PListWorkerError.theListCouldNotBeCreated
         }
-        guard let tasksList: [[String : Any]] = try worker.getPList() else {
+        guard let tasksList: [TaskModel] = try worker.getPList() else {
             throw PListWorkerError.couldNotRetrieveAnyData
         }
         let newTaskList = filterDoneTasks(tasks: tasksList)
@@ -35,10 +35,9 @@ class ShowDoneTasksInteractor: ShowDoneTasksInteractorInput {
         
     }
     
-    func filterDoneTasks(tasks: [[String : Any]]) -> [[String : Any]] {
-        let filteredTasksList = tasks.filter { (task: [String : Any]) -> Bool in
-            let taskState = task["isDone"] as! Bool
-            return (taskState == true)
+    func filterDoneTasks(tasks: [TaskModel]) -> [TaskModel] {
+        let filteredTasksList = tasks.filter { (task: TaskModel) -> Bool in
+            return (task.taskState == true)
         }
         return filteredTasksList
     }

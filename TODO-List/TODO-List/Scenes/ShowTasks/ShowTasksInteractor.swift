@@ -23,16 +23,16 @@ class ShowTasksInteractor: ShowTasksInteractorInput {
     
     func requestTask(request: ShowTasksRequest) throws {
         
-        let task1: [String:Any] = ["task" : "First Task", "isDone" : false]
-        let task2: [String:Any] = ["task" : "Second Task", "isDone" : true]
-        let task3: [String:Any] = ["task" : "Third Task", "isDone" : false]
+        let task1 = TaskModel(taskText: "First Task")
+        let task2 = TaskModel(taskText: "Second Task", taskState: true)
+        let task3 = TaskModel(taskText: "Third Task")
         let mockTasksList = [task1,task2, task3]
         
         worker = PListWorker(name: "TaskList")
         guard let _ = try worker.checkOrCreatePList(with: mockTasksList) else {
             throw PListWorkerError.theListCouldNotBeCreated
         }
-        guard let tasksList: [[String : Any]] = try worker.getPList() else {
+        guard let tasksList: [TaskModel] = try worker.getPList() else {
             throw PListWorkerError.couldNotRetrieveAnyData
         }
         let newTaskList = filterPendingTasks(tasks: tasksList)
@@ -40,10 +40,9 @@ class ShowTasksInteractor: ShowTasksInteractorInput {
         output.presentTaskList(response: response)
     }
     
-    func filterPendingTasks(tasks: [[String : Any]]) -> [[String : Any]] {
-        let filteredTasksList = tasks.filter { (task: [String : Any]) -> Bool in
-            let taskState = task["isDone"] as! Bool
-            return (taskState == false)
+    func filterPendingTasks(tasks: [TaskModel]) -> [TaskModel] {
+        let filteredTasksList = tasks.filter { (task: TaskModel) -> Bool in
+            return (task.taskState == false)
         }
         return filteredTasksList
     }

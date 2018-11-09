@@ -9,8 +9,13 @@
 import UIKit
 
 struct TaskModel {
-    let taskText: String
-    let taskState: Bool = false
+    var taskText: String
+    var taskState: Bool
+    
+    init(taskText: String, taskState: Bool = false) {
+        self.taskText = taskText
+        self.taskState = taskState
+    }
 }
 
 enum PListWorkerError: Error {
@@ -29,18 +34,37 @@ class PListWorker {
         self.plistURL = documentDirectoryURL.appendingPathComponent("\(name).plist")
         }
     
-    func checkOrCreatePList(with data: [[String : Any]]?) throws -> Bool? {
+    
+    func checkOrCreatePList(with data: [TaskModel]?) throws -> Bool? {
+        let dataParsed = transformTaskModelToDictionary(tasksList: data ?? [])
         let fileManager = FileManager.default
         if (!fileManager.fileExists(atPath: plistURL.path)){
-            let toDoList = data ?? []
+            let toDoList = dataParsed 
             try savePropertyList(toDoList)
             return true
         }
         return true
     }
     
-    func getPList() throws -> [[String : Any]]? {
-        let tasksList: [[String : Any]] = try loadPropertyList()
+    func transformTaskModelToDictionary(tasksList:[TaskModel]) -> [[String : Any]] {
+        let newTaskList = tasksList.map { (task:TaskModel) -> [String : Any] in
+            let newTask:[String : Any] = ["task" : task.taskText, "isDone": task.taskState]
+            return newTask
+        }
+        return newTaskList
+    }
+    
+    func transformDictionaryToTaskModel(dictionaryList: [[String : Any]]) -> [TaskModel] {
+        let taskList = dictionaryList.map { (dictionary:[String : Any]) -> TaskModel in
+            let task: TaskModel = TaskModel(taskText: dictionary["task"] as! String, taskState: (dictionary["isDone"] as! Bool))
+            return task
+        }
+        return taskList
+    }
+    
+    func getPList() throws -> [TaskModel]? {
+        let dictionary: [[String : Any]] = try loadPropertyList()
+        let tasksList = transformDictionaryToTaskModel(dictionaryList: dictionary)
         return tasksList
     }
     
