@@ -19,11 +19,20 @@ class MarkTaskAsDoneInteractor: MarkTaskAsDoneInteractorInput {
     
     func removeTasks(request: MarkTaskAsDoneRequest) throws {
         worker = PListWorker(name: "TaskList")
-        try worker.removeData(tasks: request.doneTasks)
+        try worker.changeDataState(tasksToMark: request.doneTasks)
         guard let tasksList: [[String : Any]] = try worker.getPList() else {
             throw PListWorkerError.couldNotRetrieveAnyData
         }
-        let response = ShowTasksResponse(tasksList: tasksList)
+        let newTaskList = filterPendingTasks(tasks: tasksList)
+        let response = ShowTasksResponse(tasksList: newTaskList)
         output.presentTaskList(response: response)
+    }
+    
+    func filterPendingTasks(tasks: [[String : Any]]) -> [[String : Any]] {
+        let filteredTasksList = tasks.filter { (task: [String : Any]) -> Bool in
+            let taskState = task["isDone"] as! Bool
+            return (taskState == false)
+        }
+        return filteredTasksList
     }
 }

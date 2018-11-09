@@ -141,9 +141,9 @@
 		196107582189E99E00FA6786 /* Scenes */ = {
 			isa = PBXGroup;
 			children = (
-				19CFB8A72195C089009B5EEA /* ShowDoneTasks */,
 				19DD8C7221931DE6009E23D4 /* Common */,
 				1961075A2189EA3300FA6786 /* ShowTasks */,
+				19CFB8A72195C089009B5EEA /* ShowDoneTasks */,
 				196107592189E9A800FA6786 /* CreateTask */,
 				19D653DD2192285B0042AE7A /* MarkTaskAsDone */,
 			);
@@ -182,8 +182,8 @@
 				19CFB8A82195C0C5009B5EEA /* ShowDoneTasksViewController.swift */,
 				19CFB8AC2195C533009B5EEA /* ShowDoneTasksInteractor.swift */,
 				19CFB8AE2195C983009B5EEA /* ShowDoneTasksPresenter.swift */,
-				19CFB8AA2195C116009B5EEA /* ShowDoneTasksModels.swift */,
 				19CFB8B02195CA7B009B5EEA /* ShowDoneTasksConfigurator.swift */,
+				19CFB8AA2195C116009B5EEA /* ShowDoneTasksModels.swift */,
 			);
 			path = ShowDoneTasks;
 			sourceTree = "<group>";

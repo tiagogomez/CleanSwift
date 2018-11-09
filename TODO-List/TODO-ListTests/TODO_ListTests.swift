@@ -69,15 +69,33 @@ class TODO_ListTests: XCTestCase {
         XCTAssertEqual(tasksListViewModel, expectedValue, "Both lists should be the same")
     }
     
-    func testRemoveDataFromPList() {
+    
+    func testChangeDataFromPList() {
         let worker = PListWorker(name: "TestTaskList")
         do {
             _ = try worker.checkOrCreatePList(with: mockTasksList)
-            let tasksToRemove = ["First Task", "Second Task"]
-            _ = try worker.removeData(tasks: tasksToRemove)
+            let tasksToMark = ["First Task", "Second Task"]
+            _ = try worker.changeDataState(tasksToMark: tasksToMark)
             let tasksList: [[String : Any]] = try worker.getPList()!
-            let actualTask: String = tasksList[0]["task"] as! String
-            XCTAssertEqual(actualTask, "Third Task")
+            let task1State: Bool = tasksList[0]["isDone"] as! Bool
+            let task2State: Bool = tasksList[1]["isDone"] as! Bool
+            XCTAssertEqual(task1State, true)
+            XCTAssertEqual(task2State, true)
+        } catch {
+            print("Something Wrong Happened")
+        }
+    }
+    
+    func testFilterDoneTasks() {
+        
+        let interactor = ShowDoneTasksInteractor()
+        let worker = PListWorker(name: "TestDoneTaskList")
+        do {
+            _ = try worker.checkOrCreatePList(with: mockTasksList)
+            let tasksList: [[String : Any]] = try worker.getPList()!
+            print("testing", tasksList)
+            let newTaskList = interactor.filterDoneTasks(tasks: tasksList)
+            print("testing", newTaskList)
         } catch {
             print("Something Wrong Happened")
         }

@@ -21,7 +21,7 @@ class CreateTaskRouter: CreateTaskRouterInput {
 //            // Nothing to do here.
 //        }
         let storyboard = UIStoryboard(name: "Main", bundle: nil)
-        let controller = storyboard.instantiateViewController(withIdentifier: "ShowTasksViewController")
+        let controller = storyboard.instantiateViewController(withIdentifier: "TabBarController")
         viewController.present(controller, animated: true, completion: nil)
     }
 }

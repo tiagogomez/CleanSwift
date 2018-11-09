@@ -21,5 +21,17 @@ class ShowDoneTasksPresenter: ShowDoneTasksPresenterInput {
     var output:ShowDoneTasksPresenterOutput!
     
     func presentTaskList(response: ShowDoneTasksResponse) {
+        
+        let tasksList = transformDataToViewModel(data: response)
+        let viewModel = ShowDoneTasksViewModel(tasksList: tasksList)
+        output.displayTaskList(viewModel: viewModel)
+    }
+    
+    func transformDataToViewModel(data: ShowDoneTasksResponse) -> [String] {
+        var transformedData: [String]?
+        transformedData = data.tasksList.map { (task: [String : Any]) -> String in
+            return task["task"] as! String
+        }
+        return transformedData ?? []
     }
 }

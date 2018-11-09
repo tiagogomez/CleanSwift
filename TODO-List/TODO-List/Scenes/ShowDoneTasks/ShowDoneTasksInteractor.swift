@@ -9,7 +9,7 @@
 import UIKit
 
 protocol ShowDoneTasksInteractorInput {
-    func requestTask(request: ShowDoneTasksRequest)
+    func requestDoneTasks(request: ShowDoneTasksRequest) throws
 }
 
 protocol ShowDoneTasksInteractorOutput {
@@ -19,7 +19,27 @@ protocol ShowDoneTasksInteractorOutput {
 class ShowDoneTasksInteractor: ShowDoneTasksInteractorInput {
     
     var output: ShowDoneTasksInteractorOutput!
+    var worker: PListWorker!
     
-    func requestTask(request: ShowDoneTasksRequest) {
+    func requestDoneTasks(request: ShowDoneTasksRequest) throws {
+        worker = PListWorker(name: "TaskList")
+        guard let _ = try worker.checkOrCreatePList(with: nil) else {
+            throw PListWorkerError.theListCouldNotBeCreated
+        }
+        guard let tasksList: [[String : Any]] = try worker.getPList() else {
+            throw PListWorkerError.couldNotRetrieveAnyData
+        }
+        let newTaskList = filterDoneTasks(tasks: tasksList)
+        let response = ShowDoneTasksResponse(tasksList: newTaskList)
+        output.presentTaskList(response: response)
+        
+    }
+    
+    func filterDoneTasks(tasks: [[String : Any]]) -> [[String : Any]] {
+        let filteredTasksList = tasks.filter { (task: [String : Any]) -> Bool in
+            let taskState = task["isDone"] as! Bool
+            return (taskState == true)
+        }
+        return filteredTasksList
     }
 }

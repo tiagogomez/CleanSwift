@@ -50,6 +50,32 @@ class PListWorker {
         try savePropertyList(tasksList)
     }
     
+    func changeDataState(tasksToMark: [String]) throws {
+        do {
+            var tasksList: [[String : Any]] = try loadPropertyList()
+            for taskToMarkAsDone in tasksToMark {
+                for i in 0 ..< tasksList.count {
+                    let taskText = tasksList[i]["task"] as! String
+                    if taskText == taskToMarkAsDone {
+                        tasksList[i]["isDone"] = true
+                    }
+                }
+//                if let taskToEdit = tasksList.first(where: { (task: [String : Any]) -> Bool in
+//                    let actualTask = task["task"] as! String
+//                    return (actualTask == taskToMarkAsDone)
+//                }) {
+//                    print ("encontró", taskToEdit)
+//                    if let index = tasksList.index(of: taskToEdit){
+//
+//                    }
+//                }
+            }
+            try savePropertyList(tasksList)
+        } catch {
+            print(error)
+        }
+    }
+    
     func removeData(tasks: [String]) throws {
         do {
             var tasksList: [[String : Any]] = try loadPropertyList()

@@ -142,7 +142,6 @@ extension ShowTasksViewController : ShowTasksViewControllerInput {
     func displayTaskList(viewModel: ShowTasksViewModel) {
         tasksList = viewModel.tasksList
         tableView.reloadData()
-        print("list", tasksList)
         if tasksList.isEmpty {
             showSuggestion()
         }

@@ -13,7 +13,7 @@ protocol ShowDoneTasksViewControllerInput {
 }
 
 protocol ShowDoneTasksViewControllerOutput {
-    func requestTask(request: ShowDoneTasksRequest)
+    func requestDoneTasks(request: ShowDoneTasksRequest) throws
 }
 
 class ShowDoneTasksViewController: UIViewController, UITableViewDataSource, UITableViewDelegate {
@@ -32,14 +32,30 @@ class ShowDoneTasksViewController: UIViewController, UITableViewDataSource, UITa
     override func viewDidLoad() {
         super.viewDidLoad()
         setupTableView()
+        showTasks()
+    }
+    
+    override func viewWillAppear(_ animated: Bool) {
+        showTasks()
     }
     
     func setupTableView () {
         tableView.delegate = self
         tableView.dataSource = self
         tableView.register(UINib(nibName: "TaskViewCell", bundle: nil), forCellReuseIdentifier: "TaskViewCell")
-        tableView.allowsMultipleSelection = true
-        tableView.allowsMultipleSelectionDuringEditing = true
+    }
+    
+    func showTasks() {
+        do{
+            let request = ShowDoneTasksRequest()
+            try output.requestDoneTasks(request: request)
+        } catch PListWorkerError.theListCouldNotBeCreated {
+            print("TheListCouldNotBeCreated")
+        } catch PListWorkerError.couldNotRetrieveAnyData{
+            print("TheDataCouldNotBeRetrieved")
+        } catch {
+            print("Something Happened")
+        }
     }
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
@@ -56,5 +72,7 @@ class ShowDoneTasksViewController: UIViewController, UITableViewDataSource, UITa
 extension ShowDoneTasksViewController: ShowDoneTasksViewControllerInput {
     
     func displayTaskList(viewModel: ShowDoneTasksViewModel) {
+        tasksList = viewModel.tasksList
+        tableView.reloadData()
     }
 }

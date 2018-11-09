@@ -19,6 +19,8 @@ extension ShowDoneTasksInteractor: ShowDoneTasksViewControllerOutput {
 extension ShowDoneTasksPresenter: ShowDoneTasksInteractorOutput {
 }
 
+
+
 class ShowDoneTasksConfigurator {
     
     static let singleton = ShowDoneTasksConfigurator()
